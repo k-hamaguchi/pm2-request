@@ -3,8 +3,6 @@ version: '3.7'
 services:
   app:
     image: keymetrics/pm2:latest-alpine
-    environment:
-      NODE_TLS_REJECT_UNAUTHORIZED: '0'
     extra_hosts:
       - www.example.com:10.255.4.1
     volumes:
@@ -15,4 +13,4 @@ services:
     command:
     - pm2-runtime
     - start
-    - pm2.json
+    - pm2.yaml

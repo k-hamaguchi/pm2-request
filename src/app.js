@@ -1,11 +1,10 @@
 const http = require('http')
 const https = require('https')
+const request = require('request-promise')
 
-http.createServer((req, res) => {
-  console.log(`${req.method} ${req.url}`)
-  https.get('https://www.example.com', (res2) => {
-    res2.on('data', chunk => res.write(chunk))
-    res2.on('end', () => res.end())
-  })
+http.createServer(async (req, res) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`)
+  const body = await request('https://www.example.com')
+  res.end(body)
 })
 .listen(process.env.PORT || 8080)
